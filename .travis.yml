@@ -15,7 +15,7 @@ before_install:
   -   sudo apt-get install cmake
 #  - fi;
   - cd jblosc2
-  - git clone https://github.com/Blosc/c-blosc.git
+  - git clone https://github.com/Blosc/c-blosc2.git
   - cd c-blosc
   - rm -rf build
   - mkdir build
