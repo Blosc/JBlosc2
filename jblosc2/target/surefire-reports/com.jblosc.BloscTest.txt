@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.jblosc.BloscTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.022 sec <<< FAILURE! - in com.jblosc.BloscTest
+testCompressDecompressDoubleCtx(com.jblosc.BloscTest)  Time elapsed: 0.089 sec  <<< ERROR!
+java.lang.Error: Invalid memory access
+	at com.jblosc.BloscTest.testCompressDecompressDoubleCtx(BloscTest.java:240)
+
