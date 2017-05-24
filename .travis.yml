@@ -16,7 +16,7 @@ before_install:
 #  - fi;
   - cd jblosc2
   - git clone https://github.com/Blosc/c-blosc2.git
-  - cd c-blosc
+  - cd c-blosc2
   - rm -rf build
   - mkdir build
   - cd build
