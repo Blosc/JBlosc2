@@ -237,8 +237,8 @@ public class BloscTest {
 		dctx.nthreads = 2;
 		bw.decompressCtx(dctx, obb, abb, abb.limit());
 		double[] data_again = Util.byteBufferToDoubleArray(abb);
-		bw.freeCtx(cctx);
-		bw.freeCtx(dctx);
+		//bw.freeCtx(cctx);
+		//bw.freeCtx(dctx);
 		bw.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}
