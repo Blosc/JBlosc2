@@ -273,19 +273,22 @@ public class BloscWrapper {
 		return BloscLibrary.blosc2_unpack_schunk(packed);
 	}
 
-	public void freeCtx(ContextCparams context) {
+	/*
+	private void freeCtx(Pointer ptr) {
+		BloscLibrary.blosc_context bc = new BloscLibrary.blosc_context(ptr);
 		PointerByReference ptrByRef = new PointerByReference();
-		Pointer ptr = context.getPointer();
-		ptrByRef.setPointer(ptr);
-		BloscLibrary.blosc2_free_ctx(ptrByRef);
+		ptrByRef.setPointer(bc.getPointer());
+		BloscLibrary.blosc2_free_ctx(ptrByRef);		
+	}
+
+	public void freeCtx(ContextCparams context) {
+		this.freeCtx(context.getPointer());
 	}
 
 	public void freeCtx(ContextDparams context) {
-		PointerByReference ptrByRef = new PointerByReference();
-		Pointer ptr = context.getPointer();
-		ptrByRef.setPointer(ptr);
-		BloscLibrary.blosc2_free_ctx(ptrByRef);
+		this.freeCtx(context.getPointer());
 	}
+	*/
 
 	public int getBlocksize() {
 		return BloscLibrary.blosc_get_blocksize();
