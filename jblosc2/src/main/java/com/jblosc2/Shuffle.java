@@ -1,4 +1,4 @@
-package com.jblosc;
+package com.jblosc2;
 
 public class Shuffle {
 	public static int NO_SHUFFLE = 0;

@@ -1,16 +1,15 @@
-package com.jblosc;
+package com.jblosc2;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 
-import com.jblosc.jna.BloscLibrary;
-import com.jblosc.jna.ContextCparams;
-import com.jblosc.jna.ContextDparams;
-import com.jblosc.jna.ContextDparams.ByReference;
-import com.jblosc.jna.Sheader;
-import com.jblosc.jna.Sparams;
+import com.jblosc2.jna.BloscLibrary;
+import com.jblosc2.jna.ContextCparams;
+import com.jblosc2.jna.ContextDparams;
+import com.jblosc2.jna.Sheader;
+import com.jblosc2.jna.Sparams;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.NativeLongByReference;
@@ -275,21 +274,17 @@ public class BloscWrapper {
 	}
 
 	public void freeCtx(ContextCparams context) {
-		com.jblosc.jna.ContextCparams.ByReference br = context.byReference();
 		PointerByReference ptrByRef = new PointerByReference();
-//		Pointer ptr = context.getPointer();
-		ptrByRef.setPointer(br.getPointer());
-		BloscLibrary.blosc_context bc = new BloscLibrary.blosc_context(context.getPointer());
-		BloscLibrary.blosc2_free_ctx(bc.getPointer());
+		Pointer ptr = context.getPointer();
+		ptrByRef.setPointer(ptr);
+		BloscLibrary.blosc2_free_ctx(ptrByRef);
 	}
 
 	public void freeCtx(ContextDparams context) {
-		ByReference br = context.byReference();
 		PointerByReference ptrByRef = new PointerByReference();
-		BloscLibrary.blosc_context bc = new BloscLibrary.blosc_context(context.getPointer());
-//		Pointer ptr = context.getPointer();
-		ptrByRef.setPointer(br.getPointer());
-		BloscLibrary.blosc2_free_ctx(bc.getPointer());
+		Pointer ptr = context.getPointer();
+		ptrByRef.setPointer(ptr);
+		BloscLibrary.blosc2_free_ctx(ptrByRef);
 	}
 
 	public int getBlocksize() {

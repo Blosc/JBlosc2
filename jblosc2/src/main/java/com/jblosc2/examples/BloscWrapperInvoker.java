@@ -1,13 +1,13 @@
-package com.jblosc.examples;
+package com.jblosc2.examples;
 
 import java.nio.ByteBuffer;
 
-import com.jblosc.BloscWrapper;
-import com.jblosc.PrimitiveSizes;
-import com.jblosc.Util;
-import com.jblosc.jna.BloscLibrary;
-import com.jblosc.jna.Sheader;
-import com.jblosc.jna.Sparams;
+import com.jblosc2.BloscWrapper;
+import com.jblosc2.PrimitiveSizes;
+import com.jblosc2.Util;
+import com.jblosc2.jna.BloscLibrary;
+import com.jblosc2.jna.Sheader;
+import com.jblosc2.jna.Sparams;
 
 public class BloscWrapperInvoker {
 

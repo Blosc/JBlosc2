@@ -1,10 +1,10 @@
-package com.jblosc.jna;
+package com.jblosc2.jna;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import com.jblosc.Util;
+import com.jblosc2.Util;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;

@@ -1,4 +1,4 @@
-package com.jblosc;
+package com.jblosc2;
 
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;

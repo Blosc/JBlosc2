@@ -1,4 +1,4 @@
-package com.jblosc;
+package com.jblosc2;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -11,11 +11,16 @@ import java.nio.IntBuffer;
 
 import org.junit.Test;
 
-import com.jblosc.jna.BloscLibrary;
-import com.jblosc.jna.ContextCparams;
-import com.jblosc.jna.ContextDparams;
-import com.jblosc.jna.Sheader;
-import com.jblosc.jna.Sparams;
+import com.jblosc2.BloscWrapper;
+import com.jblosc2.BufferSizes;
+import com.jblosc2.PrimitiveSizes;
+import com.jblosc2.Shuffle;
+import com.jblosc2.Util;
+import com.jblosc2.jna.BloscLibrary;
+import com.jblosc2.jna.ContextCparams;
+import com.jblosc2.jna.ContextDparams;
+import com.jblosc2.jna.Sheader;
+import com.jblosc2.jna.Sparams;
 import com.sun.jna.Memory;
 import com.sun.jna.NativeLong;
 import com.sun.jna.ptr.NativeLongByReference;
@@ -237,8 +242,8 @@ public class BloscTest {
 		dctx.nthreads = 2;
 		bw.decompressCtx(dctx, obb, abb, abb.limit());
 		double[] data_again = Util.byteBufferToDoubleArray(abb);
-		//bw.freeCtx(cctx);
-		//bw.freeCtx(dctx);
+		bw.freeCtx(cctx);
+		bw.freeCtx(dctx);
 		bw.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}

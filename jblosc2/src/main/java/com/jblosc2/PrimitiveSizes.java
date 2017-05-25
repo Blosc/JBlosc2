@@ -1,4 +1,4 @@
-package com.jblosc;
+package com.jblosc2;
 
 public class PrimitiveSizes {
 	public static final int OBJECT_SHELL_SIZE = 8;
