@@ -63,7 +63,6 @@ public class BloscTest {
 		}
 		ByteBuffer b = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		System.out.println("Blosc version " + bw.getVersionString());
 		bw.setNumThreads(4);
 		System.out.println("Working with " + bw.getNumThreads() + " threads");
@@ -138,7 +137,6 @@ public class BloscTest {
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
 		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
 		printRatio(bw, "Double", obb);
@@ -158,7 +156,6 @@ public class BloscTest {
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
 		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.FLOAT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
 		printRatio(bw, "Float", obb);
@@ -178,7 +175,6 @@ public class BloscTest {
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
 		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.LONG_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
 		printRatio(bw, "Long", obb);
@@ -198,7 +194,6 @@ public class BloscTest {
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
 		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.INT_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
 		printRatio(bw, "Int", obb);
@@ -218,7 +213,6 @@ public class BloscTest {
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
 		ContextCparams cctx = new ContextCparams();
 		cctx.clevel = 5;
@@ -242,8 +236,6 @@ public class BloscTest {
 		dctx.nthreads = 2;
 		bw.decompressCtx(dctx, obb, abb, abb.limit());
 		double[] data_again = Util.byteBufferToDoubleArray(abb);
-//		bw.freeCtx(cctx);
-//		bw.freeCtx(dctx);
 		bw.destroy();
 		assertArrayEquals(data, data_again, (float) 0);
 	}
@@ -256,7 +248,6 @@ public class BloscTest {
 			ibb.putDouble(i);
 		}
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		ByteBuffer obb = ByteBuffer.allocateDirect(ibb.limit() + BloscWrapper.OVERHEAD);
 		bw.compress(5, Shuffle.BYTE_SHUFFLE, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, ibb.limit(), obb, obb.limit());
 		printRatio(bw, "Double", obb);
@@ -274,7 +265,6 @@ public class BloscTest {
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		int iBufferSize = SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE;
 		int oBufferSize = SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE + BloscWrapper.OVERHEAD;
 		ByteBuffer obb = ByteBuffer.allocateDirect(oBufferSize);
@@ -320,7 +310,6 @@ public class BloscTest {
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
 		BloscWrapper bw = new BloscWrapper();
-		bw.init();
 		int iBufferSize = SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE;
 		int oBufferSize = SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE + BloscWrapper.OVERHEAD;
 		ByteBuffer obb = ByteBuffer.allocateDirect(oBufferSize);

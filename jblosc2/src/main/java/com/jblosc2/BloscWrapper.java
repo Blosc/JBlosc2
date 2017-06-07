@@ -25,6 +25,9 @@ public class BloscWrapper {
 
 	public static final int OVERHEAD = 16;
 
+	public BloscWrapper(){
+		init();
+	}
 	/**
 	 * Call to the JNA blosc_init()
 	 */
@@ -181,33 +184,39 @@ public class BloscWrapper {
 		dest.position(0);
 		src.order(ByteOrder.nativeOrder());
 		dest.order(ByteOrder.nativeOrder());
-		int w = BloscLibrary.blosc_compress(compressionLevel, shuffleType, new NativeLong(typeSize),
+		int cBytes = BloscLibrary.blosc_compress(compressionLevel, shuffleType, new NativeLong(typeSize),
 				new NativeLong(srcLength), src, dest, new NativeLong(destLength));
-		checkExit(w);
-		return w;
+		checkExit(cBytes);
+		return cBytes;
 	}
 
 	public int decompress(Buffer src, Buffer dest, long destSize) {
 		src.position(0);
 		dest.position(0);
-		return BloscLibrary.blosc_decompress(src, dest, new NativeLong(destSize));
+		int nBytes = BloscLibrary.blosc_decompress(src, dest, new NativeLong(destSize));
+		checkExit(nBytes);
+		return nBytes;
 	}
 
 	public int compressCtx(ContextCparams context, Buffer src, long srcLength, Buffer dest, long destLength) {
 		src.position(0);
 		dest.position(0);
 		PointerByReference byref = BloscLibrary.blosc2_create_cctx(context);
-		int w = BloscLibrary.blosc2_compress_ctx(byref, new NativeLong(srcLength), src, dest,
+		int cBytes = BloscLibrary.blosc2_compress_ctx(byref, new NativeLong(srcLength), src, dest,
 				new NativeLong(destLength));
-		checkExit(w);
-		return w;
+		checkExit(cBytes);
+		BloscLibrary.blosc2_free_ctx(byref);
+		return cBytes;
 	}
 
 	public int decompressCtx(ContextDparams context, Buffer src, Buffer dest, int destSize) {
 		src.position(0);
 		dest.position(0);
 		PointerByReference byref = BloscLibrary.blosc2_create_dctx(context);
-		return BloscLibrary.blosc2_decompress_ctx(byref, src, dest, new NativeLong(destSize));
+		int nBytes = BloscLibrary.blosc2_decompress_ctx(byref, src, dest, new NativeLong(destSize));
+		checkExit(nBytes);
+		BloscLibrary.blosc2_free_ctx(byref);
+		return nBytes;
 	}
 
 	public int getitemCtx(ContextDparams context, Buffer src, int start, int nitems, Buffer dest) {
@@ -272,24 +281,7 @@ public class BloscWrapper {
 	public Sheader unpackSchunk(Buffer packed) {
 		return BloscLibrary.blosc2_unpack_schunk(packed);
 	}
-
-	/*
-	private void freeCtx(Pointer ptr) {
-		BloscLibrary.blosc_context bc = new BloscLibrary.blosc_context(ptr);
-		PointerByReference ptrByRef = new PointerByReference();
-		ptrByRef.setPointer(bc.getPointer());
-		BloscLibrary.blosc2_free_ctx(ptrByRef);		
-	}
-
-	public void freeCtx(ContextCparams context) {
-		this.freeCtx(context.getPointer());
-	}
-
-	public void freeCtx(ContextDparams context) {
-		this.freeCtx(context.getPointer());
-	}
-	*/
-
+	
 	public int getBlocksize() {
 		return BloscLibrary.blosc_get_blocksize();
 	}
