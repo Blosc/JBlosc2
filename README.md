@@ -1,4 +1,9 @@
-# jblosc2
+# JBlosc2
+
+| **Travis CI** | **Appveyor** |
+|---------------|--------------|
+|[![Build Status](https://travis-ci.org/Blosc/JBlosc.svg?branch=master)](https://travis-ci.org/Blosc/JBlosc2) |[![Build status](https://ci.appveyor.com/api/projects/status/k7ler2n0ytmbjrw6?svg=true)](https://ci.appveyor.com/project/FrancescAlted/jblosc2)|
+
 Java interface for Blosc2
 
 The purpose of this project is to create a Java interface for the compressor Blosc. JNA has been chosen as the mechanism to communicate with the Blosc2 shared library.
