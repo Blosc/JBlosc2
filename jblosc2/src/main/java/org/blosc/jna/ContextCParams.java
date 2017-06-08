@@ -1,4 +1,4 @@
-package com.jblosc2.jna;
+package org.blosc.jna;
 import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class ContextCparams extends Structure<ContextCparams, ContextCparams.ByValue, ContextCparams.ByReference > {
+public class ContextCParams extends Structure<ContextCParams, ContextCParams.ByValue, ContextCParams.ByReference > {
 	public byte typesize;
 	/** the type size (8) */
 	public byte compcode;
@@ -25,7 +25,7 @@ public class ContextCparams extends Structure<ContextCparams, ContextCparams.ByV
 	 * C type : blosc2_sheader*
 	 */
 	public Sheader.ByReference schunk;
-	public ContextCparams() {
+	public ContextCParams() {
 		super();
 	}
 	protected List<? > getFieldOrder() {
@@ -40,7 +40,7 @@ public class ContextCparams extends Structure<ContextCparams, ContextCparams.ByV
 	 * @param schunk the requested size of the compressed blocks (0; meaning automatic)<br>
 	 * C type : blosc2_sheader*
 	 */
-	public ContextCparams(byte typesize, byte compcode, byte clevel, byte filtercode, byte nthreads, int blocksize, Sheader.ByReference schunk) {
+	public ContextCParams(byte typesize, byte compcode, byte clevel, byte filtercode, byte nthreads, int blocksize, Sheader.ByReference schunk) {
 		super();
 		this.typesize = typesize;
 		this.compcode = compcode;
@@ -50,19 +50,19 @@ public class ContextCparams extends Structure<ContextCparams, ContextCparams.ByV
 		this.blocksize = blocksize;
 		this.schunk = schunk;
 	}
-	public ContextCparams(Pointer peer) {
+	public ContextCParams(Pointer peer) {
 		super(peer);
 	}
 	protected ByReference newByReference() { return new ByReference(); }
 	protected ByValue newByValue() { return new ByValue(); }
-	protected ContextCparams newInstance() { return new ContextCparams(); }
-	public static ContextCparams[] newArray(int arrayLength) {
-		return Structure.newArray(ContextCparams.class, arrayLength);
+	protected ContextCParams newInstance() { return new ContextCParams(); }
+	public static ContextCParams[] newArray(int arrayLength) {
+		return Structure.newArray(ContextCParams.class, arrayLength);
 	}
-	public static class ByReference extends ContextCparams implements Structure.ByReference {
+	public static class ByReference extends ContextCParams implements Structure.ByReference {
 		
 	};
-	public static class ByValue extends ContextCparams implements Structure.ByValue {
+	public static class ByValue extends ContextCParams implements Structure.ByValue {
 		
 	};
 }

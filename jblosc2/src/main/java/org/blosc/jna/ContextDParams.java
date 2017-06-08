@@ -1,4 +1,4 @@
-package com.jblosc2.jna;
+package org.blosc.jna;
 import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
 import java.util.Arrays;
@@ -8,14 +8,14 @@ import java.util.List;
  * a tool written by <a href="http://ochafik.com/">Olivier Chafik</a> that <a href="http://code.google.com/p/jnaerator/wiki/CreditsAndLicense">uses a few opensource projects.</a>.<br>
  * For help, please visit <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> , <a href="http://rococoa.dev.java.net/">Rococoa</a>, or <a href="http://jna.dev.java.net/">JNA</a>.
  */
-public class ContextDparams extends Structure<ContextDparams, ContextDparams.ByValue, ContextDparams.ByReference > {
+public class ContextDParams extends Structure<ContextDParams, ContextDParams.ByValue, ContextDParams.ByReference > {
 	public byte nthreads;
 	/**
 	 * the number of threads to use internally (1)<br>
 	 * C type : blosc2_sheader*
 	 */
 	public Sheader.ByReference schunk;
-	public ContextDparams() {
+	public ContextDParams() {
 		super();
 	}
 	protected List<? > getFieldOrder() {
@@ -25,24 +25,24 @@ public class ContextDparams extends Structure<ContextDparams, ContextDparams.ByV
 	 * @param schunk the number of threads to use internally (1)<br>
 	 * C type : blosc2_sheader*
 	 */
-	public ContextDparams(byte nthreads, Sheader.ByReference schunk) {
+	public ContextDParams(byte nthreads, Sheader.ByReference schunk) {
 		super();
 		this.nthreads = nthreads;
 		this.schunk = schunk;
 	}
-	public ContextDparams(Pointer peer) {
+	public ContextDParams(Pointer peer) {
 		super(peer);
 	}
 	protected ByReference newByReference() { return new ByReference(); }
 	protected ByValue newByValue() { return new ByValue(); }
-	protected ContextDparams newInstance() { return new ContextDparams(); }
-	public static ContextDparams[] newArray(int arrayLength) {
-		return Structure.newArray(ContextDparams.class, arrayLength);
+	protected ContextDParams newInstance() { return new ContextDParams(); }
+	public static ContextDParams[] newArray(int arrayLength) {
+		return Structure.newArray(ContextDParams.class, arrayLength);
 	}
-	public static class ByReference extends ContextDparams implements Structure.ByReference {
+	public static class ByReference extends ContextDParams implements Structure.ByReference {
 		
 	};
-	public static class ByValue extends ContextDparams implements Structure.ByValue {
+	public static class ByValue extends ContextDParams implements Structure.ByValue {
 		
 	};
 }

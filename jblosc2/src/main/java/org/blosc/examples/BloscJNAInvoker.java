@@ -1,8 +1,8 @@
-package com.jblosc2.examples;
+package org.blosc.examples;
 
 import java.nio.ByteBuffer;
 
-import com.jblosc2.jna.BloscLibrary;
+import org.blosc.jna.BloscLibrary;
 import com.sun.jna.Memory;
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;

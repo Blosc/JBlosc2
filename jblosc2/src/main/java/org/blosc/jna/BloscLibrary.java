@@ -1,10 +1,10 @@
-package com.jblosc2.jna;
+package org.blosc.jna;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import com.jblosc2.Util;
+import org.blosc.Util;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
@@ -361,7 +361,7 @@ public class BloscLibrary implements Library {
 	 * <br>
 	 * <i>native declaration : line 580</i>
 	 */
-	public static native PointerByReference blosc2_create_cctx(ContextCparams cparams);
+	public static native PointerByReference blosc2_create_cctx(ContextCParams cparams);
 
 	/**
 	 * Original signature :
@@ -369,7 +369,7 @@ public class BloscLibrary implements Library {
 	 * <br>
 	 * <i>native declaration : line 587</i>
 	 */
-	public static native PointerByReference blosc2_create_dctx(ContextDparams dparams);
+	public static native PointerByReference blosc2_create_dctx(ContextDParams dparams);
 
 	/**
 	 * Original signature : <code>void blosc2_free_ctx(blosc_context*)</code>
