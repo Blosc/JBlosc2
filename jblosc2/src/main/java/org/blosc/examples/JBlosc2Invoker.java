@@ -1,15 +1,15 @@
-package com.jblosc2.examples;
+package org.blosc.examples;
 
 import java.nio.ByteBuffer;
 
-import com.jblosc2.BloscWrapper;
-import com.jblosc2.PrimitiveSizes;
-import com.jblosc2.Util;
-import com.jblosc2.jna.BloscLibrary;
-import com.jblosc2.jna.Sheader;
-import com.jblosc2.jna.Sparams;
+import org.blosc.JBlosc2;
+import org.blosc.PrimitiveSizes;
+import org.blosc.Util;
+import org.blosc.jna.BloscLibrary;
+import org.blosc.jna.Sheader;
+import org.blosc.jna.Sparams;
 
-public class BloscWrapperInvoker {
+public class JBlosc2Invoker {
 
 	public static void main(String[] args) {
 		int SIZE = 100 * 100 * 100;
@@ -18,30 +18,30 @@ public class BloscWrapperInvoker {
 			data[i] = i;
 		}
 		ByteBuffer ibb = Util.array2ByteBuffer(data);
-		BloscWrapper bw = new BloscWrapper();
-		bw.init();
+		JBlosc2 jb2 = new JBlosc2();
+		jb2.init();
 		int iBufferSize = SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE;
-		int oBufferSize = SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE + BloscWrapper.OVERHEAD;
+		int oBufferSize = SIZE * PrimitiveSizes.DOUBLE_FIELD_SIZE + JBlosc2.OVERHEAD;
 		ByteBuffer obb = ByteBuffer.allocateDirect(oBufferSize);
-		int w = bw.compress(5, 1, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, iBufferSize, obb, oBufferSize);
+		int w = jb2.compress(5, 1, PrimitiveSizes.DOUBLE_FIELD_SIZE, ibb, iBufferSize, obb, oBufferSize);
 
 		Sparams sparams = new Sparams();
 		sparams.filters[0] = BloscLibrary.BLOSC_DELTA;
 		sparams.filters[1] = BloscLibrary.BLOSC_SHUFFLE;
-		Sheader sheader = bw.newSchunk(sparams);
+		Sheader sheader = jb2.newSchunk(sparams);
 		/* Now append a couple of chunks */
-		int nchunks = bw.appendBuffer(sheader, PrimitiveSizes.DOUBLE_FIELD_SIZE, iBufferSize, ibb);
+		int nchunks = jb2.appendBuffer(sheader, PrimitiveSizes.DOUBLE_FIELD_SIZE, iBufferSize, ibb);
 		assert (nchunks == 1);
-		nchunks = bw.appendBuffer(sheader, PrimitiveSizes.DOUBLE_FIELD_SIZE, iBufferSize, ibb);
+		nchunks = jb2.appendBuffer(sheader, PrimitiveSizes.DOUBLE_FIELD_SIZE, iBufferSize, ibb);
 		assert (nchunks == 2);
 
 		/* Retrieve and decompress the chunks (0-based count) */
-		int dsize = bw.decompressChunk(sheader, 0, obb, iBufferSize);
+		int dsize = jb2.decompressChunk(sheader, 0, obb, iBufferSize);
 		if (dsize < 0) {
 			System.out.println("Decompression error.  Error code: " + dsize);
 			return;
 		}
-		dsize = bw.decompressChunk(sheader, 1, obb, iBufferSize);
+		dsize = jb2.decompressChunk(sheader, 1, obb, iBufferSize);
 		if (dsize < 0) {
 			System.out.println("Decompression error.  Error code: " + dsize);
 			return;
@@ -61,12 +61,12 @@ public class BloscWrapperInvoker {
 		System.out.println("Succesful roundtrip!");
 
 		ByteBuffer abb = ByteBuffer.allocateDirect(iBufferSize);
-		bw.decompress(obb, abb, iBufferSize);
+		jb2.decompress(obb, abb, iBufferSize);
 
-		bw.destroySchunk(sheader);
+		jb2.destroySchunk(sheader);
 
 		double[] data_again = Util.byteBufferToDoubleArray(abb);
-		bw.destroy();
+		jb2.destroy();
 		System.out.println(
 				"Items Original " + data.length + ", Items compressed " + w + ", Items again " + data_again.length);
 		System.out.println("Finished!");

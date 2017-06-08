@@ -1,4 +1,4 @@
-package com.jblosc2.jna;
+package org.blosc.jna;
 import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Pointer;
 import java.util.Arrays;

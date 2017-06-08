@@ -1,14 +1,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.blosc</groupId>
+
+	<groupId>org.blosc</groupId>
 	<artifactId>jblosc2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Blosc JNA Interface</name>
-	<description>Blosc JNA Interface</description>
+	<packaging>jar</packaging>
+
+	<name>JBlosc2</name>
+	<description>Blosc2 Java Interface</description>
+	<url>https://github.com/Blosc/JBlosc2</url>
+	<licenses>
+        <license>
+            <name>BSD License for jblosc</name>
+            <url>https://github.com/Blosc/jblosc/LICENSES/JBLOSC.txt</url>
+        </license>
+        <license>
+            <name>BSD License for blosc</name>
+            <url>https://github.com/Blosc/jblosc/LICENSES/BLOSC.txt</url>
+        </license>
+    </licenses>
+	<developers>
+        <developer>
+            <name>Francesc Alted</name>
+            <email>francesc@blosc.com</email>
+        </developer>
+        <developer>
+            <name>Andrés Alted</name>
+            <email>andres.alted@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Alberto Sabater</name>
+            <email>alberto3pt@gmail.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/Blosc/JBlosc2.git</connection>
+        <developerConnection>scm:git:ssh://github.com:Blosc/JBlosc2.git</developerConnection>
+        <url>http://github.com/blosc/JBlosc2/tree/master</url>
+    </scm>
+
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
